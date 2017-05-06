@@ -7,7 +7,6 @@ export const Comparison = ({ selectedCards, compareSchools, findSchoolAverage })
       let school1 = selectedCards[0].location.toUpperCase();
       let school2 = selectedCards[1].location.toUpperCase();
       let averageData = compareSchools(school1, school2);
-console.log(averageData.school1);
       return (
         <div className='selected comparison'>
           <p className='school-name'>
