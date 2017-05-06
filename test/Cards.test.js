@@ -13,7 +13,7 @@ describe('Cards', () => {
 
   it('renders the number of cards that are passed to it', () => {
     const data = [{location: 'denver', data: ''}, {location: 'academy', data: ''}, {location: 'akron', data: ''}]
-    const wrapper = shallow(<Cards data={data} onClick={() => {}}/>)
+    const wrapper = shallow(<Cards data={data} selectedCards={[]} onClick={() => {}}/>)
 
     expect(wrapper.find('.card')).toHaveLength(3);
   })

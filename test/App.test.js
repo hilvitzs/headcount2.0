@@ -68,6 +68,7 @@ describe('App', () => {
           "location": "COLORADO SPRINGS 11",
          },
       ],
+      "selectedCards": []
     }
 
     const input = wrapper.find('input');
