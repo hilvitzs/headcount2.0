@@ -1,19 +1,35 @@
 import React from 'react';
 import { CardData } from './CardData';
 
-export const Cards = ({ data, onClick }) => {
+export const Cards = ({ data, selectedCards, onClick }) => {
+  const checkIfSelected = (obj) => {
+    let selectedClass = '';
+    if (selectedCards.includes(obj)) {
+      selectedClass = 'selected';
+    } else {
+      selectedClass = 'card';
+    }
+    return selectedClass;
+  };
+
   return (
-    <section className='card-holder'
-             onClick={(e) => {onClick(e)}}>
+    <section className='card-holder'>
       {
       Object.keys(data)
       .map( (key, index) => {
+        const selectedClass = checkIfSelected(data[key]);
+        const location = data[key].location;
         return (
-          <div className='card'
-               key={index}>
+          <div key={index}
+               className={selectedClass}
+               onClick={() => {onClick(location)}}
+          >
+            <p className='school-district'>
+                School District:
+            </p>
             <p className='school-name'>
-              <span>School District:</span>
-              {data[key].location}</p>
+              {location}
+            </p>
             <CardData data={data} schoolKey={key} />
           </div>
         )
