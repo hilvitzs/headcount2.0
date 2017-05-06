@@ -11,15 +11,35 @@ export default class App extends Component {
     this.schools = new DistrictRepository(kinderData);
     let schoolData = this.schools.data;
     this.state = {
-      data: schoolData
+      data: schoolData,
+      selectedCards: []
     }
   }
 
-  handleSelect(event) {
-    if (document.querySelectorAll('.clicked').length < 2) {
-      event.target.closest('.card').classList.toggle('clicked');
-    } else {
-      event.target.closest('.card').classList.remove('clicked');
+  handleSelect(string) {
+    let object = this.schools.findByName(string);
+    var tempArray = this.state.selectedCards.slice()
+    if (this.state.selectedCards.length < 2) {
+      if (!this.state.selectedCards.includes(object)) {
+        tempArray.push(object)
+        this.setState({ selectedCards: tempArray })
+      } else {
+        let newArray = tempArray.filter((obj) => {
+          return obj !== object
+        })
+        this.setState({ selectedCards: newArray })
+      }
+    } else if (this.state.selectedCards.length === 2) {
+        if (!this.state.selectedCards.includes(object)) {
+          tempArray.shift();
+          tempArray.push(object);
+          this.setState({ selectedCards: tempArray })
+        } else {
+          let newArray = tempArray.filter((obj) => {
+            return obj !== object
+          })
+          this.setState({ selectedCards: newArray })
+        }
     }
   }
 
@@ -36,6 +56,7 @@ export default class App extends Component {
           <Search handleSearch={this.handleSearch.bind(this)} />
         </header>
         <Cards data={ this.state.data }
+               selectedCards={ this.state.selectedCards }
                onClick={ this.handleSelect.bind(this) } />
       </div>
     );
