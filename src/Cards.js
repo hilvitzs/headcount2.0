@@ -1,5 +1,6 @@
 import React from 'react';
 import { CardData } from './CardData';
+import PropTypes from 'prop-types';
 
 export const Cards = ({ data, selectedCards, onClick }) => {
   const checkIfSelected = (obj) => {
@@ -37,4 +38,10 @@ export const Cards = ({ data, selectedCards, onClick }) => {
       }
     </section>
   )
+}
+
+Cards.propTypes = {
+  data: PropTypes.object,
+  selectedCards: PropTypes.array,
+  onClick: PropTypes.func
 }
