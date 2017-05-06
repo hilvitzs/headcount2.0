@@ -49,8 +49,12 @@ export default class App extends Component {
     this.setState({data: sortedData})
  }
 
-  compareSchools (name1, name2) {
-    this.schools.compareDistrictAverages(name1, name2)
+  findSchoolAverage(name) {
+    return this.schools.findAverage(name);
+  }
+
+  compareSchools(name1, name2) {
+    return this.schools.compareDistrictAverages(name1, name2);
   }
 
   render() {
@@ -60,7 +64,9 @@ export default class App extends Component {
           <h1>Welcome To Headcount 2.0</h1>
           <Search handleSearch={this.handleSearch.bind(this)} />
         </header>
-        <Comparison selectedCards={this.state.selectedCards} compareSchools={this.compareSchools.bind(this)}/>
+        <Comparison selectedCards={this.state.selectedCards}
+                    compareSchools={this.compareSchools.bind(this)}
+                    findSchoolAverage={this.findSchoolAverage.bind(this)}/>
         <Cards data={ this.state.data }
                selectedCards={ this.state.selectedCards }
                onClick={ this.handleSelect.bind(this) } />

@@ -71,6 +71,6 @@ export default class DistrictRepository {
 
     const average = (school1Avg / school2Avg);
 
-    return {[school1Name]: school1Avg, [school2Name]: school2Avg, ['compared']: Math.round(average * 1000) / 1000};
+    return {[school1Name]: school1Avg, [school2Name]: school2Avg, 'compared': Math.round(average * 1000) / 1000};
   };
 }

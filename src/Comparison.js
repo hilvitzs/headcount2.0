@@ -1,34 +1,65 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export const Comparison = ({ selectedCards, compareSchools }) => {
-  if(selectedCards[0]) {
+export const Comparison = ({ selectedCards, compareSchools, findSchoolAverage }) => {
+  const showComparison = () => {
+    if (selectedCards.length === 2) {
+      let school1 = selectedCards[0].location.toUpperCase();
+      let school2 = selectedCards[1].location.toUpperCase();
+      let averageData = compareSchools(school1, school2);
+console.log(averageData.school1);
+      return (
+        <div className='selected comparison'>
+          <p className='school-name'>
+            {school1}: {averageData[school1]}
+          </p>
+          <p className='comparison-data'>
+            &larr; {averageData.compared} &rarr;
+          </p>
+          <p className='school-name'>
+            {school2}: {averageData[school2]}
+          </p>
+        </div>
+      )
+    } else {
+      return (
+        <div />
+      )
+    }
+  }
+
+  if(selectedCards.length) {
     return (
-      <div>
+      <div className='comparison-holder'>
         {selectedCards.map( (card, index) => {
           return (
-            <div className='selected' key={index}>
-              <p>
+            <div className={index === 0 ? 'selected first' : 'selected second'} key={index}>
+              <p className='school-name'>
                 {card.location}
               </p>
-              <div>
                 {Object.keys(card.data).map((key, index) => {
                   return(
-                    <p key={index}>
+                    <p key={index}
+                       className={card.data[key] > 0.5 ? 'over school-data' : 'under school-data'}>
                       {key}: {card.data[key]}
                     </p>
                   )
                 })}
-              </div>
             </div>
           )
         })}
+        {showComparison()}
       </div>
     )
   } else {
     return (
-      <div>
-
-      </div>
+      <div />
     )
   }
+}
+
+Comparison.propTypes = {
+  selectedCards: PropTypes.array,
+  compareSchools: PropTypes.func,
+  findSchoolAverage: PropTypes.func
 }

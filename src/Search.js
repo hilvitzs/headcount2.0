@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const Search = ({ handleSearch }) => {
   return (
@@ -8,4 +9,8 @@ export const Search = ({ handleSearch }) => {
       <h4 className='search-label'>type to search</h4>
     </div>
   )
+}
+
+Search.propTypes = {
+  handleSearch: PropTypes.func
 }
