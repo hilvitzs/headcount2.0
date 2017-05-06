@@ -78,4 +78,15 @@ describe('App', () => {
     expect(wrapper.state()).toEqual(expectedState);
     expect(wrapper.find('.card')).toHaveLength(2);
   })
+
+  it.skip('should call handleSelect() when a card is clicked', () => {
+    const mockSelect = jest.fn();
+    const wrapper = mount(<App handleSelect={mockSelect}/>);
+
+    const card = wrapper.find('.card').first();
+
+    card.simulate('click')
+
+    expect(mockSelect).toHaveBeenCalledTimes(1);
+  })
 })
