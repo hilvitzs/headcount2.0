@@ -20,10 +20,6 @@ export const Comparison = ({ selectedCards, compareSchools, findSchoolAverage })
           </p>
         </div>
       )
-    } else {
-      return (
-        <div />
-      )
     }
   }
 
