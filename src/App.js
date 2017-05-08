@@ -63,6 +63,12 @@ export default class App extends Component {
         <header>
           <h1>Welcome To Headcount 2.0</h1>
           <Search handleSearch={this.handleSearch.bind(this)} />
+          <div className='key'>
+            <h3>Key</h3>
+            <p className='under'>Average is under 0.5</p>
+            <p className='over'>Average is 0.5+</p>
+            <p className='key-data'>&larr; First school average &#47; Second school average &rarr;</p>
+          </div>
         </header>
         <Comparison selectedCards={this.state.selectedCards}
                     compareSchools={this.compareSchools.bind(this)}
